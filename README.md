@@ -6,10 +6,10 @@ Atlas is a proof of concept for a customer-facing chatbot designed for Company X
 
 We employ 2 different approaches to build the chatbot: **ReAct Agent** and **Corrective RAG**. The ReAct Agent is a dynamic reasoning agent that can handle complex customer inquiries, while Corrective RAG is a more structured approach that ensures accurate responses by validating retrieved documents.
 
-Visit the [Atlas website](https://carro-frontend--0000002.jollywave-f0940ff6.southeastasia.azurecontainerapps.io/) to see the chatbot in action!
+Visit the [Atlas website](https://carro-frontend.jollywave-f0940ff6.southeastasia.azurecontainerapps.io/) to see the chatbot in action!
 
 <div align="center">
-<img src="assets/demo.gif" alt="Atlas Demo" width="70%">
+<img src="assets/demo.gif" alt="Atlas Demo" width="100%">
 </div>
 
 ## Built With
@@ -242,7 +242,7 @@ We considered [**Unstructured.io**](https://github.com/Unstructured-IO/unstructu
 We settled on **LLama Parse** for our specific document structure:
 
 <div align="center">
-<img src="https://i.ytimg.com/vi/TkGGy6aA4Qc/maxresdefault.jpg" alt="LLama Parse Logo" width="50%">
+<img src="https://i.ytimg.com/vi/TkGGy6aA4Qc/maxresdefault.jpg" alt="LLama Parse Logo" width="70%">
 </div>
 
 ```python
@@ -259,7 +259,7 @@ LLama Parse worked well for our use case because our Terms of Service document w
 LLama Parse also excelled at extracting structured content like tables compared to `PyPDF`, and LlamaIndex provides 1000 free parses per day. 
 
 <div align="center">
-<img src="assets/table.png" alt="Table Extraction Example" width="50%">
+<img src="assets/table.png" alt="Table Extraction Example" width="70%">
 </div>
 
 _Tables such as these ^ could not be extracted using PyPDFLoader, but LLama Parse handles them well._
@@ -275,7 +275,7 @@ For more unstructured documents, semantic parsing methods might perform better, 
 We selected **Qdrant** as our vector database for several strategic reasons aligned with Company X's requirements:
 
 <div align="center">
-<img src="https://qdrant.tech/images/logo_with_text.png" alt="Qdrant Logo" width="50%">
+<img src="https://qdrant.tech/images/logo_with_text.png" alt="Qdrant Logo" width="70%">
 </div>
 
 ### Why Qdrant?
@@ -328,7 +328,7 @@ For this project, we explored **ReAct Agent** and **Corrective RAG**. We wanted 
 **LangGraph** is a Python library designed to build stateful, multi-step applications that integrate LLMs with external tools. It uses a graph-based approach to define workflows, where each step (or **node**) represents a specific operation. 
 
 <div align="center">
-<img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/langgraph-color.png" alt="LangGraph Logo" width="70%">
+<img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/langgraph-color.png" alt="LangGraph Logo" width="60%">
 </div>
 
 LangGraph also supports:
@@ -601,14 +601,14 @@ _Part B1 Section 3: Our Offer shall remain valid for **twenty-four (24) hours** 
 
 ##### ReAct Agent Response
 <div align="center">
-<img src="assets/output/1_react_accuracy.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/1_react_accuracy.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 - Our ReAct Agent correctly retrieved and cited the 24-hour validity from Company X's T&C.
 
 ##### Corrective RAG Response
 <div align="center">
-<img src="assets/output/1_crag_accuracy.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/1_crag_accuracy.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 - Our corrective RAG pipeline fetched the correct clause, but since majority of the documents were irrelevant, this triggered a web lookup which retrieved generic / irrelevant web documents (a little ironic), which might have led to it hallucinating and resulting in a generic—and less precise—response. Here we see that the nodes of a corrective RAG pipeline needs to be carefully designed to ensure that the retrieval step is accurate and relevant, in this case we might need to redesign or do a little prompt engineering to remind the model to check its web sources more carefully.
@@ -631,14 +631,14 @@ Part B3: 2.1.15
 
 ### ReAct Agent Response
 <div align="center">
-<img src="assets/output/2_react_accuracy.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/2_react_accuracy.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 Correctly identified all unacceptable vehicle conditions.
 
 ### Corrective RAG Response
 <div align="center">
-<img src="assets/output/2_crag_accuracy.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/2_crag_accuracy.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 Correctly identified all unacceptable vehicle conditions.
@@ -660,14 +660,14 @@ Tests how well each system can address various types of customer inquiries beyon
 
 ##### ReAct Agent Response
 <div align="center">
-<img src="assets/output/completeness_react_1.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/completeness_react_1.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 Correctly identified that the Company X Certified warranty requires inspection at least 6 months before the original warranty expires.
 
 ##### Corrective RAG Response
 <div align="center">
-<img src="assets/output/completeness_crag_1.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/completeness_crag_1.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 Correctly identified that the Company X Certified warranty requires inspection at least 6 months before the original warranty expires.
@@ -681,14 +681,14 @@ So far, not bad. But let's see how they handle more complex scenarios.
 
 ##### ReAct Agent Response
 <div align="center">
-<img src="assets/output/completeness_react_2.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/completeness_react_2.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 Wrong! Stated that the user can continue using the car until Company X takes possession, which contradicts the terms.
 
 ##### Corrective RAG Response
 <div align="center">
-<img src="assets/output/completeness_crag_2.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/completeness_crag_2.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 Not right but not wrong. The corrective RAG agent did not find the right answer but suggested the user contact Company X for clarification, which is a reasonable fallback. This might have been an effect of prompt engineering, where the model was instructed to be more cautious and not make assumptions about the terms. Retrieval of documents, depending on the query, can be hard.
@@ -707,14 +707,14 @@ Evaluates the system's robustness against irrelevant, out-of-scope questions or 
 
 ##### ReAct Agent Response
 <div align="center">
-<img src="assets/output/error_react_1.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/error_react_1.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 Despite instructions, answered the out-of-scope coding question. This seems to happen more often later into the conversation. ReAct agent is a little hard to control; it is designed to be flexible and adaptive, but this can lead to it ignoring instructions if the conversation context shifts.
 
 ##### Corrective RAG Response
 <div align="center">
-<img src="assets/output/error_crag_1.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/error_crag_1.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 Detected irrelevance and politely refused. It seems that it is much better at handling prompt injections than ReAct Agent, probably due to the classification node that filters out irrelevant queries before retrieval.
@@ -723,14 +723,14 @@ Detected irrelevance and politely refused. It seems that it is much better at ha
 
 ##### ReAct Agent Response
 <div align="center">
-<img src="assets/output/error_react_2.png" alt="ReAct Agent Response" width="70%">
+<img src="assets/output/error_react_2.png" alt="ReAct Agent Response" width="80%">
 </div>
 
 Adhered to instructions and refused to answer the philosophical question.
 
 ##### Corrective RAG Response
 <div align="center">
-<img src="assets/output/error_crag_2.png" alt="Corrective RAG Response" width="70%">
+<img src="assets/output/error_crag_2.png" alt="Corrective RAG Response" width="80%">
 </div>
 
 Identified the query as irrelevant and declined to answer.
